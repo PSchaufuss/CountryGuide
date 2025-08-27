@@ -12,17 +12,26 @@ public class Country
 
     public Country(String flagUrl, String generalInfo, int population, String attractions, String history, String name)
     {
+        this.name = name;
         this.flagUrl = flagUrl;
         this.generalInfo = generalInfo;
         this.population = population;
         this.attractions = attractions;
         this.history = history;
-        this.name = name;
     }
 
     public Country()
     {
 
+    }
+    public Country(String name)
+    {
+        this.name = name;
+        this.history = "";
+        this.attractions = "";
+        this.population = 0;
+        this.generalInfo = "";
+        this.flagUrl = "";
     }
 
 
