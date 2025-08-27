@@ -50,7 +50,7 @@ public Country findCountryByName(String name)
     return null;
 }
 
-public Country updateCountries(Country newCountry)
+public Country updateCountry(Country newCountry)
 {
     // Sætter parameteret newCountry til det nye navn for currentCountry, som er et eksisterende objekt i listen.
     Country currentCountry = findCountryByName(newCountry.getName());
