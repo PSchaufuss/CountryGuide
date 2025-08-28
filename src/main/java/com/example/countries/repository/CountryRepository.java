@@ -31,9 +31,15 @@ public Country addCountry(Country country)
     if (country.getAttractions() == null) country.setAttractions("");
     if (country.getGeneralInfo() == null) country.setGeneralInfo("");
     if (country.getFlagUrl() == null)     country.setFlagUrl("");
+    if (country.getPopulation() == 0) country.setPopulation(0);
 
     countries.add(country);
     return country;
+}
+
+public Country getCountry(String name)
+{
+    return findCountryByName(name);
 }
 
 public List<Country> getAllCountries()

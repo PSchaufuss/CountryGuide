@@ -26,6 +26,11 @@ public class CountryService
         return countryRepository.getAllCountries();
     }
 
+    public Country getCountry(String name)
+    {
+        return countryRepository.getCountry(name);
+    }
+
     public Country findCountryByName(String name)
     {
         return countryRepository.findCountryByName(name);
