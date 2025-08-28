@@ -1,0 +1,178 @@
+/* :root = top-niveau til globale variabler */
+/* --bg = baggrundsfarve til hele siden */
+/* --panel = farve til bokse/sektioner */
+/* --text = almindelig tekstfarve */
+/* --muted = svagere/grå tekst */
+/* --accent = fremhævning (links, knapper) */
+:root
+{
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --line: #1f2937;
+    --accent: #38bdf8;
+}
+
+/* ' * ' = alle elementer */
+* { box-sizing: border-box; } /* box-sizing: border-box = padding og border tælles med i elementets bredde/højde */
+html, body { margin: 0; padding: 0; } /* Fjerner default margin/padding fra hele siden */
+body
+{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* font-family = fallback-liste af skrifttyper */
+    background: linear-gradient(180deg,#0b1220,#0f172a 35%,#0b1220); /* background = lodret farve-gradient fra top til bund */
+    color: var(--text); /* color = tekstfarve (her med var(--text)) */
+    line-height: 1.6; /* line-height = afstand mellem linjer (bedre læsbarhed) */
+}
+
+.topbar /* .topbar = styling af header/navigation. Se note under index.html med "class" */
+{
+    position: sticky; top:0; z-index:10; /* position: sticky = holder sig øverst ved scroll. top: 0 = klistrer fast til toppen. z-index = sørger for den ligger over andet indhold.*/
+    background: rgba(17, 24, 39, 0.85);/* background = mørk halv-gennemsigtig baggrund */
+    backdrop-filter: blur(6px); /* backdrop-filter = gør baggrunden sløret bag topbaren */
+    border-bottom: 1px solid var(--line); /* border-bottom = tynd linje under topbaren */
+}
+
+.nav ul
+{
+    margin: 0 auto;
+    padding: 12px 20px;
+    max-width: 1100px;
+    list-style: none; /* fjerner bullets fra listen */
+    display: flex; /* gør menuen horisontal */
+    gap: 20px; /* afstand mellem menupunkterne */
+}
+
+.nav a
+{
+    color: var(--text); /* linkfarve */
+    text-decoration: none; /* fjerner understregning */
+    padding: 8px 10px; /* indvendig afstand */
+    border-radius: 8px; /* afrunder kanter lidt */
+}
+
+.nav a:hover
+{
+    background: #1f2937; /* mørk baggrund ved hover */
+}
+
+/* Hero-sektion */
+.hero
+{
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 24px;
+    background: var(--panel); /* baggrund til boksen */
+    border: 1px solid var(--line); /* kant rundt om boksen */
+    border-radius: 14px; /* afrundede hjørner */
+    display: grid; /* laver layout med kolonner */
+    grid-template-columns: 1.2fr 1fr; /* 2 kolonner med forskellig bredde */
+    gap: 24px; /* afstand mellem kolonner */
+    align-items: center; /* centrér vertikalt */
+}
+
+.hero__content h1
+{
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 44px); /* responsiv skriftstørrelse */
+    line-height: 1.1;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent), #60a5fa); /* farvegradient til tekst */
+    -webkit-background-clip: text; /* gør teksten gennemsigtig, viser baggrunden */
+    background-clip: text;
+    color: transparent;
+}
+
+.hero__content p
+{
+    text-align: center;
+    color: var(--muted); /* grå tekstfarve */
+    margin: 8px 0 0;
+}
+
+.hero__image
+{
+    width: 100%;
+    height: auto; /* skalerer billedet pænt */
+    border-radius: 10px; /* bløde hjørner */
+    border: 1px solid var(--line); /* kant om billedet */
+    filter: brightness(1.8) contrast(1.2) saturate(1.1); /* fremhæv verdenskortet */
+    transition: filter 0.3s ease-in-out; /* blød overgang ved ændringer */
+}
+/* filter: brightness(1.35) = gør kortet tydeligere uden at det bliver hvidt */
+/* transition = smooth effekt hvis filter ændres */
+
+.layout
+{
+    max-width: 1100px;
+    margin: 18px auto 32px;
+    padding: 0 24px;
+    display: grid; /* 2-kolonne layout */
+    grid-template-columns: 1.6fr 1fr; /* venstre = bredere end højre */
+    gap: 24px; /* afstand mellem kolonner */
+}
+
+.content, .sidebar
+{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+}
+
+.content
+{
+    color: var(--text); /* almindelig tekstfarve */
+}
+
+.content p /* .content p = afsnit (<p>) inde i .content */
+{
+    color: var(--muted); /* svagere tekstfarve */
+}
+
+.sidebar h3
+{
+    margin-top: 0; /* fjerner ekstra topmargin */
+}
+
+.sidebar ul
+{
+    margin: 0;
+    padding-left: 18px; /* indryk listepunkter */
+}
+
+.sidebar a /* .sidebar a = links inde i sidebar */
+{
+    color: var(--accent); /* fremhæv linkfarve */
+}
+
+.sidebar a:hover
+{
+    text-decoration: underline; /* understreg ved hover */
+}
+
+.footer
+{
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 16px 24px;
+    text-align: center;
+    color: var(--muted); /* grå tekstfarve i bunden */
+}
+
+@media (max-width: 920px)
+{
+    .hero
+    {
+        grid-template-columns: 1fr; /* hero bliver én kolonne på mobil */
+    }
+    .layout
+    {
+        grid-template-columns: 1fr; /* content + sidebar under hinanden */
+    }
+    .nav ul
+    {
+        justify-content: center; /* centrerer menupunkterne */
+        flex-wrap: wrap; /* tillader menupunkter at gå ned i flere rækker */
+    }
+}

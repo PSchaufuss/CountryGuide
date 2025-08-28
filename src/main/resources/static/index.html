@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8" />
+    <title>CountryGuide</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- "header" = top-sektion, fx logo eller navigation -->
+<!-- class="topbar" gør det muligt at style med CSS (.topbar { ... }) -->
+<header class="topbar">
+    <!-- "nav" = navigation (menulinje med links) -->
+    <!-- class="nav" bruges til at style med CSS -->
+<nav class="nav">
+    <!-- (uordnet liste) -->
+    <ul>
+        <!-- <li> = hvert punkt i listen -->
+        <!-- <a href="..."> = link til en rute -->
+            <li><a href="/">Velkomst</a></li>
+            <li><a href="/countries">Se alle lande</a></li>
+            <li><a href="/countries/danmark">Se Danmark</a></li>
+    </ul>
+</nav>
+</header>
+
+<!-- <section> = afsnit på siden, fx intro -->
+<!-- class="hero" = hero-sektion (stor intro med billede og tekst) -->
+<section class="hero">
+    <!-- <div> = container til at gruppere indhold -->
+    <!-- class="hero__content" = indholdet i hero, bruges til styling -->
+    <div class="hero_content">
+        <h1>CountryGuide</h1>
+        <p>
+            Din lette indgang til fakta om lande verden over—historie, attraktioner, befolkningstal og nyttige ressourcer.
+        </p>
+    </div>
+    <img
+            class="hero__image"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
+            alt="Verdenskort"
+    />
+</section>
+
+<!-- <main> = hovedindhold på siden (bruges kun én gang) -->
+<!-- class="layout" = layoutstruktur (fx grid/flex) -->
+<main class="layout">
+    <!-- <section> = undersektion i main -->
+    <!-- class="content" = indholdsområde (fx tekst) -->
+    <section class="content">
+        <h2>Hvad er CountryGuide?</h2>
+        <p>
+            CountryGuide samler et overblik over lande. Brug navigationen øverst for at finde den information lige netop du søger,
+            eller gå på opdagelse via eksterne ressourcer i panelet til højre.
+        </p>
+        <p>
+            Målet er at give et hurtigt, overskueligt indblik. Godt til studerende og rejselystne! :)
+        </p>
+    </section>
+
+    <!-- <aside> = ekstra indhold ved siden af main (fx sidebar) -->
+    <aside class="sidebar">
+       <h3>Nyttige links</h3>
+        <ul>
+            <!-- target="_blank" = åbner link i ny fane -->
+            <!-- rel="noopener" = sikkerhed, beskytter mod adgang fra ny fane -->
+            <li><a href="https://www.visitdenmark.dk/" target="_blank" rel="noopener">VisitDenmark</a></li>
+            <li><a href="https://www.lonelyplanet.com/" target="_blank" rel="noopener">Lonely Planet</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps</a></li>
+        </ul>
+    </aside>
+</main>
+<!-- <footer> = sidens bund, typisk kontakt el. copyright -->
+<footer class="footer">
+    <p>Kontakt: <a href="mailto:countryguide@justafakemail.dk">countryguide@justafakemail.dk</a> · Udviklet af PSchaufuss</p>
+</footer>
+</body>
+</html>
