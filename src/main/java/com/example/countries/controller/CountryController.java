@@ -20,6 +20,11 @@ public class CountryController
         this.countryService = countryService;
     }
 
+    public void test2()
+    {
+
+    }
+
 
     private boolean doesCountryExist(Country country)
     {
