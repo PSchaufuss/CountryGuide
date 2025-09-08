@@ -20,17 +20,6 @@ public class CountryController
         this.countryService = countryService;
     }
 
-    public void test()
-    {
-
-    }
-
-    public void test2()
-    {
-
-    }
-
-
     private boolean doesCountryExist(Country country)
     {
         return (country.getName() != null && countryService.findCountryByName(country.getName()) != null);
