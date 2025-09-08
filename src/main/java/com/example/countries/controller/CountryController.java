@@ -25,6 +25,11 @@ public class CountryController
 
     }
 
+    public void test2()
+    {
+
+    }
+
 
     private boolean doesCountryExist(Country country)
     {
@@ -69,7 +74,7 @@ public class CountryController
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Landet findes ikke.");
     }
 
-        @PostMapping("/delete/{name}")
+    @PostMapping("/delete/{name}")
     public ResponseEntity<?> deleteCountry(@PathVariable String name)
     {
         Country deletedCountry = countryService.findCountryByName(name);
