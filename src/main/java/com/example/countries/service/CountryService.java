@@ -40,6 +40,11 @@ public class CountryService
         return countryRepository.updateCountry(newCountry);
     }
 
+    public List<Country> searchByName(String query)
+    {
+        return countryRepository.searchByName(query);
+    }
+
     public boolean deleteByName(String name)
     {
         return countryRepository.deleteByName(name);

@@ -160,6 +160,118 @@ body
     color: var(--muted); /* grå tekstfarve i bunden */
 }
 
+.tbl
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tbl th, .tbl td
+{
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+}
+
+.tbl thead th
+{
+    text-align: left;
+    font-weight: 700;
+}
+
+.tbl .num { text-align: right; width: 140px; } /* Sørger for at befolkningen er højre-justeret */
+.tbl .actions { white-space: nowrap; width: 220px; } /* knapperne skal ikke bryde sammen */
+
+.inline { display: inline; }
+.sep { color: var(--muted); margin: 0 6px; }
+
+/* links/knapper til handliner */
+.link { color: var(--accent); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.btn
+{
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    background: #0e1a2a;
+}
+
+.btn:hover { background: #132238; }
+
+.btn-ghost
+{
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn-ghost:hover { background: #1f2937 }
+
+.toolbar
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.toolbar h2 { margin: 0; }
+
+.search { display: flex; flex-direction: column; gap: 4px; }
+.input-group { display: flex; gap: 8px; align-items: center; }
+.input
+{
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #0b1424;
+    color: var(--text);
+}
+.input:focus { outline: 2px solid #1f2937; }
+
+/* tabel-handlinger – to linjer */
+.actions { width: 260px; }
+.stack { display: flex; flex-direction: column; gap: 6px; }
+.stack .row { display: flex; gap: 12px; align-items: center; }
+
+.btn-link
+{
+    text-decoration: none;
+    color: var(--text);
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #0e1a2a;
+    display: inline-block;
+}
+
+.btn-link:hover { background: #132238; }
+
+.btn-danger-ghost
+{
+    border: 1px solid #5b1f26;
+    background: transparent;
+    color: #ffb4c1;
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn-danger-ghost:hover { background: #3a0f14; }
+
+.muted { color: var(--muted); }
+.empty
+{
+    padding: 12px 0 6px;
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 12px;
+}
+
 @media (max-width: 920px)
 {
     .hero

@@ -67,10 +67,25 @@ public class CountryController
      */
     // Fra "ResponseEntity<List<Country>> til String (view-navn) + Model med data
     @GetMapping()
-    public String getAllCountries(Model model)
+    public String getAllCountries(@RequestParam(value = "q", required = false) String q, Model model)
     {
-        List<Country> countryList = countryService.getAllCountries();
+        List<Country> countryList;
+
+        boolean hasQuery = (q != null && q.trim().length() >= 2);
+        if (hasQuery)
+        {
+            countryList = countryService.searchByName(q);
+        }
+        else
+        {
+            countryList = countryService.getAllCountries();
+        }
+
         model.addAttribute("countries", countryList);
+        model.addAttribute("q", q == null ? "" : q.trim());
+        model.addAttribute("hasQuery", hasQuery);
+        model.addAttribute("count", countryList.size());
+
         return "countries";
     }
 

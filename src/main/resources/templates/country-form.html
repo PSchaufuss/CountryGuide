@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${formTitle}">Land</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
-<body>
 
+<body>
+<header class="topbar">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/}">Velkomst</a></li>
+            <li><a th:href="@{/countries}">Se alle lande</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="layout">
+    <section class="content">
+        <h2 th:text="${formTitle}">Form</h2>
+
+        <!-- Action skiftet alt efter "isEdit" -->
+        <form th:action="${isEdit} ? @{/countries/update} : @{/countries/save}"
+              method="post"
+              th:object="${country}">
+
+            <div>
+                <label for="name">Navn</label><br>
+                <input id="name" type="text" th:field="*{name}"
+                       th:attr="|readonly=${isEdit}|" required>
+            </div>
+
+            <div>
+                <label for="population">Befolkning</label><br>
+                <input id="population" type="number" min="0" th:field="*{population}">
+            </div>
+
+            <div>
+                <label for="generalInfo">Generel info></label><br>
+                <textarea id="generalInfo" rows="5" th:field="*{generalInfo}"></textarea>
+            </div>
+
+            <div>
+                <label for="attractions">Attraktioner</label><br>
+                <textarea id="attractions" rows="5" th:field="*{attractions}"></textarea>
+            </div>
+
+            <div>
+                <label for="history">Historie</label><br>
+                <textarea id="history" rows="5" th:field="*{history}"></textarea>
+            </div>
+
+            <div>
+                <label for="flagUrl">Flag URL</label><br>
+                <input id="flagUrl" type="url" th:field="*{flagUrl}" placeholder="https://...">
+            </div>
+
+            <div style="margin-top:12px;">
+                <button type="submit">Gem</button>
+                <a th:href="@{/countries}" style="margin-left:8px;">Annuler</a>
+            </div>
+
+        </form>
+    </section>
+
+    <aside class="sidebar">
+        <h3>Hjælp</h3>
+        <ul>
+            <li>"Navn" kan ikke ændres ved redigering.</li>
+            <li>Efter 'Gem' vil du blive videreført til oversigten.</li>
+        </ul>
+    </aside>
+</main>
+
+<footer class="footer">
+    <p>CountryGuide · Formular</p>
+</footer>
 </body>
 </html>

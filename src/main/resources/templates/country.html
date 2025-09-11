@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${'Land: ' + country.name}">Land</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
+<header class="topbar">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/}">Velkomst</a></li>
+            <li><a th:href="@{/countries}">Se alle lande</a></li>
+        </ul>
+    </nav>
+</header>
 
+<section class="hero">
+    <div class="hero__content">
+        <h1 th:text="${country.name}">Land</h1>
+        <p th:text="|${#numbers.formatInteger(country.population, 0, 'POINT')} indbyggere|">0 indbyggere</p>
+    </div>
+
+    <img class="hero__image"
+         th:if="${country.flagUrl != null and !#strings.isEmpty(country.flagUrl)}"
+         th:src="${country.flagUrl}"
+         alt="Flag">
+</section>
+
+<main class="layout">
+    <section class="content">
+        <h2>Generel info</h2>
+        <p th:text="${country.generalInfo}">-</p>
+
+        <h2>Attraktioner</h2>
+        <p th:text="${country.attractions}">-</p>
+
+        <h2>Historie</h2>
+        <p th:text="${country.history}">-</p>
+
+        <div style="margin-top:16px;">
+            <a th:href="@{/countries}">⬅ Tilbage</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{|/countries/${country.name}/edit|}">Redigér</a>
+            &nbsp;|&nbsp;
+            <form th:action="@{|/countries/${country.name}/delete|}" method="post" style="display:inline">
+                <button type="submit" onclick="return confirm('Slet landet?')">Slet</button>
+            </form>
+        </div>
+    </section>
+
+    <aside class="sidebar">
+        <h3>Ressourcer</h3>
+        <ul>
+            <li><a th:href="@{/countries}">Til oversigten</a></li>
+        </ul>
+    </aside>
+</main>
+
+<footer class="footer">
+    <p>CountryGuide · Detaljer</p>
+</footer>
 </body>
 </html>
