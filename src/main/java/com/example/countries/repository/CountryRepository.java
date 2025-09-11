@@ -47,6 +47,25 @@ public List<Country> getAllCountries()
     return countries;
 }
 
+public List<Country> searchByName(String query)
+{
+    List<Country> result = new ArrayList<>();
+
+    if (query == null) return result;
+
+    String q = query.trim().toLowerCase();
+    if (q.length() < 2) return result;
+
+    for (Country country : countries)
+    {
+        if (country.getName() != null && country.getName().toLowerCase().contains(q))
+        {
+            result.add(country);
+        }
+    }
+    return result;
+}
+
 public Country findCountryByName(String name)
 {
     for (Country country : countries)

@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lande</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
 </head>
 <body>
+<header class="topbar">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/}">Velkomst</a></li>
+            <li><a th:href="@{/countries}">Se alle lande</a></li>
+            <li><a th:href="@{/countries/Danmark}">Se Danmark</a></li>
+        </ul>
+    </nav>
+</header>
 
+<main class="layout">
+    <section class="content">
+        <div class="toolbar">
+            <h2>Alle lande</h2>
+
+            <!-- SØG (GET /countries?q=...) -->
+            <form class="search" th:action="@{/countries}" method="get">
+                <div class="input-group">
+                    <input class="input" type="search" name="q" placeholder="Søg efter land.."
+                           minlength="2" th:value="${q}">
+                    <button class="btn" type="submit">Søg</button>
+                    <a class="btn-ghost" th:if="${hasQuery}" th:href="@{/countries}">Ryd</a>
+                </div>
+                <div class="muted" style="margin-top:6px;">
+          <span th:if="${hasQuery}">
+            <strong th:text="${count}">0</strong> resultater for ‘<span th:text="${q}">-</span>’
+          </span>
+                    <span th:if="${!hasQuery}">
+            Viser <strong th:text="${count}">0</strong> lande
+          </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- TOM-TILSTAND -->
+        <div class="empty" th:if="${count == 0}">
+            <p>Ingen lande fundet.</p>
+            <p th:if="${hasQuery}" class="muted">Prøv at søge bredere, eller <a th:href="@{/countries}">vis alle</a>.</p>
+            <p><a class="btn" th:href="@{/countries/add}">Tilføj land</a></p>
+        </div>
+
+        <!-- LISTE -->
+        <table class="tbl" th:if="${count > 0}">
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th class="num">Befolkning</th>
+                <th class="actions">Handling</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="country : ${countries}">
+                <td th:text="${country.name}">Danmark</td>
+
+                <td class="num"
+                    th:text="${#numbers.formatInteger(country.population, 0, 'POINT')}">0</td>
+
+                <!-- To linjer: 1) Mere om landet  2) Redigér + Slet -->
+                <td class="actions">
+                    <div class="stack">
+                        <a class="btn-link" th:href="@{|/countries/${country.name}|}">Mere om landet</a>
+                        <div class="row">
+                            <a class="link" th:href="@{|/countries/${country.name}/edit|}">Redigér</a>
+                            <form th:action="@{|/countries/${country.name}/delete|}" method="post" class="inline">
+                                <button class="btn-danger-ghost" type="submit"
+                                        onclick="return confirm('Slet landet?')">Slet</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top:12px;">
+            <a class="btn" th:href="@{/countries/add}">Tilføj land</a>
+        </p>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>CountryGuide · Oversigt</p>
+</footer>
 </body>
 </html>
